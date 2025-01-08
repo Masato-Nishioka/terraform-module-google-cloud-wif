@@ -22,23 +22,6 @@ variable "pool_id" {
   }
 }
 
-variable "pool_display_name" {
-  type        = string
-  description = "Workload Identity Pool display name"
-  default     = "github-pool"
-}
-
-variable "pool_description" {
-  type        = string
-  description = "Workload Identity Pool description"
-  default     = "Workload Identity Pool managed by Terraform"
-}
-
-variable "pool_disabled" {
-  type        = bool
-  description = "Workload Identity Pool disabled"
-  default     = false
-}
 
 # Identity pool provider
 
@@ -51,24 +34,6 @@ variable "provider_id" {
     condition     = substr(var.provider_id, 0, 4) != "gcp-" && length(regex("([a-z0-9-]{4,32})", var.provider_id)) == 1
     error_message = "The provider_id value should be 4-32 characters, and may contain the characters [a-z0-9-]."
   }
-}
-
-variable "provider_display_name" {
-  type        = string
-  description = "Workload Identity Pool Provider display name"
-  default     = "github-provider"
-}
-
-variable "provider_description" {
-  type        = string
-  description = "Workload Identity Pool Provider description"
-  default     = "Workload Identity Pool Provider managed by Terraform"
-}
-
-variable "provider_disabled" {
-  type        = bool
-  description = "Workload Identity Pool Provider disabled"
-  default     = false
 }
 
 variable "attribute_mapping" {
