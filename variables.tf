@@ -1,19 +1,18 @@
 # Project
-
 variable "project_id" {
+  description = "Workload Identity Poolを作成するGCPプロジェクトのID"
   type        = string
-  description = "The project ID to create the Workload Identity Pool"
 }
 
 variable "project_number" {
-  description = "The project number of the GCP project"
+  description = "GCPプロジェクトに割り当てられた一意のプロジェクト番号"
   type        = string
 }
 
 # Identity pool
 variable "pool_id" {
+  description = "Workload Identity Poolの一意の識別子。4-32文字の英数字とハイフンが使用可能（gcp-で始まる名前は使用不可）"
   type        = string
-  description = "Workload Identity Pool ID"
   default     = "github-pool"
 
   validation {
@@ -22,12 +21,10 @@ variable "pool_id" {
   }
 }
 
-
 # Identity pool provider
-
 variable "provider_id" {
+  description = "Workload Identity Pool Providerの一意の識別子。4-32文字の英数字とハイフンが使用可能（gcp-で始まる名前は使用不可）"
   type        = string
-  description = "Workload Identity Pool Provider ID"
   default     = "github-provider"
 
   validation {
@@ -37,7 +34,7 @@ variable "provider_id" {
 }
 
 variable "attribute_mapping" {
-  description = "Workload Identity Pool Provider attribute mapping"
+  description = "GitHub ActionsからGCPへの属性マッピングを定義するマップ。GitHub Actionsのトークンの属性をGCPの属性にマッピングする"
   type        = map(string)
   default = {
     "google.subject"       = "assertion.sub"
@@ -46,24 +43,23 @@ variable "attribute_mapping" {
 }
 
 variable "issuer_uri" {
+  description = "GitHub Actionsが発行するOIDCトークンの発行元URL"
   type        = string
-  description = "Workload Identity Pool Provider issuer URL"
   default     = "https://token.actions.githubusercontent.com"
 }
 
 # Service account impersonation
-
 variable "service_account_email" {
-  description = "The email address of the service account"
+  description = "GitHub Actionsから利用されるGCPサービスアカウントのメールアドレス"
   type        = string
 }
 
 variable "repository_owner_or_organization" {
-  description = "GitHub repository owner or organization name"
+  description = "認証を許可するGitHubリポジトリの所有者またはOrganization名"
   type        = string
 }
 
 variable "repository_name" {
-  description = "GitHub repository name"
+  description = "認証を許可するGitHubリポジトリの名前"
   type        = string
 }
