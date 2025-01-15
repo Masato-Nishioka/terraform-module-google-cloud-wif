@@ -17,10 +17,6 @@ module "workload_identity_federation" {
 }
 ```
 
-モジュールを使用する際は、以下を参照してください。
-
-https://sample-url.com
-
 ## Requirements
 
 このモジュールを使用する上での必須条件は以下です：
